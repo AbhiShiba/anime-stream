@@ -8,6 +8,7 @@ import { Genres } from "../../utils/extraData";
 export function NavBar() {
   const value = useContext(UserContextData);
   const [parameter, setParameter] = value.parameter;
+  const [genreFlag,setGenreFlage] = useState(false)
 
   const [navClass, setNavClass] = useState({
     popular: "",
@@ -26,7 +27,7 @@ export function NavBar() {
   const [genreStyle, setGenreStyle] = useState(styleStatus);
 
   const navigationBarHandler = (e) => {
-    console.log(parameter);
+    setGenreFlage(false);
     const element = e.target.getAttribute("name");
     if (element === null) {
       return;
@@ -69,6 +70,7 @@ export function NavBar() {
         topAiring: "",
         genres: "add-style",
       });
+      setGenreFlage(true)
     }
   };
 
@@ -93,6 +95,7 @@ export function NavBar() {
       return li.id === id ? { ...li, flag: !li.flag } : { ...li, flag: false };
     });
     setGenreStyle(checkStatus);
+    setGenreFlage(false);
     setParameter(`genre/${gen}`)
   };
   return (
@@ -121,15 +124,15 @@ export function NavBar() {
         <div className={`nav-section-2 ${navClass.topAiring}`} name="topAiring">
           Top Airing Animes
         </div>
-        <div className={`nav-section-2 ${navClass.genres}`} name="genres">
+       <div className={`nav-section-2 gen-display ${navClass.genres}`} name="genres">
           Genres
         </div>
       </div>
-      <div className="genres-show">
+      {genreFlag && <div className="genres-show">
         <ul className="genres-list" key="un-ordered-list">
           {genres_list(Genres)}
         </ul>
-      </div>
+      </div>}
     </div>
   );
 }
