@@ -1,0 +1,33 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    position: relative;
+    height: 18rem;
+    background-color: aquamarine;
+}
+
+.card-sec {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-sec > img{
+    width: 150px;
+    height: 200px;
+}
+
+.card-sec > h5{
+    margin: 0;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.card > p {
+    position: absolute;
+    bottom: 0%;
+    font-size: 0.9rem;
+    margin: 1px;
+}

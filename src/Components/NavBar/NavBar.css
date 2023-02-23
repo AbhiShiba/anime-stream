@@ -53,8 +53,16 @@
 .genres-show {
     position: absolute;
     top: 100%;
-    right: 0;
+    right: 1%;
     background-color: rgb(32, 30, 30);
+    transition: 0.5s;
+    height: 0%;
+    z-index: 1000;
+}
+
+.display-height {
+    height: 555%;
+    transition: 0.5s;
 }
 
 
@@ -62,11 +70,14 @@
     margin: 0%;
     padding: 10px 0;
     list-style: none;
-    display: grid;
+    display: none;
     grid-template-columns: repeat(2,1fr);
-    z-index: 1000;
 }
 
+.display-on {
+    display: grid;
+    transition: 0.5s;
+}
 
 .genres-list > li {
     margin: 0 20px;

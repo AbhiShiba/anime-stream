@@ -4,11 +4,13 @@ import { CgProfile } from "react-icons/cg";
 import { FcSearch } from "react-icons/fc";
 import { UserContextData } from "../../App";
 import { Genres } from "../../utils/extraData";
+import { useNavigate } from "react-router-dom";
 
 export function NavBar() {
   const value = useContext(UserContextData);
-  const [parameter, setParameter] = value.parameter;
+  const setParameter = value.parameter[1];
   const [genreFlag,setGenreFlage] = useState(false)
+  const navigate = useNavigate()
 
   const [navClass, setNavClass] = useState({
     popular: "",
@@ -41,6 +43,7 @@ export function NavBar() {
         genres: "",
       });
       setParameter("popular");
+      navigate("/other")
     }
 
     if (element === "movies") {
@@ -70,7 +73,7 @@ export function NavBar() {
         topAiring: "",
         genres: "add-style",
       });
-      setGenreFlage(true)
+      setGenreFlage(!genreFlag)
     }
   };
 
@@ -98,12 +101,24 @@ export function NavBar() {
     setGenreFlage(false);
     setParameter(`genre/${gen}`)
   };
+
+  const backToHome = () => {
+    setNavClass({
+      popular: "",
+      movies: "",
+      topAiring: "",
+      genres: "",
+    });
+    setParameter("recent-release");
+    navigate("/")
+  }
   return (
     <div className="nav-bar">
       <div className="nav-bar-section1">
-        <div className="nav-section">
+        <div className="nav-section" onClick={backToHome}>
+      
           <h4 className="logo">AniStream</h4>
-        </div>
+        </div> 
         <div className="nav-section searchBar">
           <div className="search-bar">
             <input type="text" placeholder="Search Anime Title" />
@@ -128,11 +143,11 @@ export function NavBar() {
           Genres
         </div>
       </div>
-      {genreFlag && <div className="genres-show">
-        <ul className="genres-list" key="un-ordered-list">
+      <div className={genreFlag ? "genres-show display-height" : "genres-show"}>
+        <ul className={genreFlag ? "genres-list display-on" : "genres-list"} key="un-ordered-list">
           {genres_list(Genres)}
         </ul>
-      </div>}
+      </div>
     </div>
   );
 }
