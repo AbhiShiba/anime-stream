@@ -1,8 +1,8 @@
 import { useEffect, useState, createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { OtherList } from "./Components/AnimePlayList/OtherList/OtherList";
 import { PlayList } from "./Components/AnimePlayList/PlayList/PlayList";
+import { VideoPlay } from "./Components/AnimePlayList/VideoPlay/VideoPlay";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Axios } from "./utils/Axios";
 
@@ -16,6 +16,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [animeData, setAnimeData] = useState(null);
+  const [videoLink,setVideoLink] = useState("")
 
   useEffect(() => {
     setLoading(true);
@@ -40,12 +41,14 @@ function App() {
           search: [search, setSearch],
           Data: animeData,
           load: loading,
+          videoLink : [videoLink,setVideoLink],
         }}
       >
         <NavBar />
         <Routes>
           <Route path="/" element={<PlayList />} />
-          <Route path="/other" element={<OtherList/>} />
+          <Route path="/other" element={<PlayList />} />
+          <Route path="/video" element={<VideoPlay/>}/>
         </Routes>
       </UserContextData.Provider>
     </BrowserRouter>

@@ -11,6 +11,7 @@ export function NavBar() {
   const setParameter = value.parameter[1];
   const [genreFlag,setGenreFlage] = useState(false)
   const navigate = useNavigate()
+  const vidLink = value.videoLink[1]
 
   const [navClass, setNavClass] = useState({
     popular: "",
@@ -93,7 +94,6 @@ export function NavBar() {
   };
 
   const listHandler = (id,gen) => {
-    console.log(id,gen);
     let checkStatus = genreStyle.map((li) => {
       return li.id === id ? { ...li, flag: !li.flag } : { ...li, flag: false };
     });
@@ -110,12 +110,13 @@ export function NavBar() {
       genres: "",
     });
     setParameter("recent-release");
+    vidLink("");
     navigate("/")
   }
   return (
     <div className="nav-bar">
       <div className="nav-bar-section1">
-        <div className="nav-section" onClick={backToHome}>
+        <div className="nav-section" style={{cursor:"pointer"}} onClick={backToHome}>
       
           <h4 className="logo">AniStream</h4>
         </div> 

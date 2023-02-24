@@ -2,6 +2,6 @@ import React from 'react'
 
 export function Loader() {
   return (
-    <div>......Loading</div>
+    <div style={{color:"white"}}>......Loading</div>
   )
 }
