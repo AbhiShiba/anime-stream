@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './OtherList.css'
-import {BsFillPlayFill} from 'react-icons/bs'
+import { UserContextData } from '../../../App'
 
 export function OtherList({index, cardData}) {
+  const checkData = useContext(UserContextData);
+  const parameter = checkData.parameter[0]
   return (
-    <div className='card-1' key={cardData.animeTitle+index}>
+    <div className='card-1' key={parameter === "top-airing" ? cardData.title+index : cardData.animeTitle+index}>
         <div className="card-sec-1" key={"card-sec-1"+index}>
-            <img src={cardData.animeImg} alt={cardData.animeId} />
-            <h5>{cardData.animeTitle}</h5>
+            <img src={parameter === "top-airing"?cardData.image : cardData.animeImg} alt={parameter === "top-airing"?cardData.id :cardData.animeId} />
+            <h5>{parameter === "top-airing"?cardData.title : cardData.animeTitle}</h5>
         </div>
-        <div className="play-btn"><BsFillPlayFill style={{fontSize:"2rem"}}/></div>
     </div>
   )
 }

@@ -12,7 +12,7 @@ export function ListCard({ index, cardData }) {
   const playVideo = () => {
     const getAnimePlayLink = async () => {
       const linkData = await Axios(
-        `https://gogoanime.consumet.stream/vidcdn/watch/${cardData.animeId}-episode-${cardData.episodeNum}`
+        `https://api.consumet.org/anime/gogoanime/watch/${cardData.id}-episode-${cardData.episodeNumber}`
       );
       vLink(linkData.data);
     };
@@ -21,15 +21,15 @@ export function ListCard({ index, cardData }) {
   };
 
   return (
-    <div className="card" key={cardData.animeTitle + index} onClick={playVideo}>
+    <div className="card" key={cardData.title + index} onClick={playVideo}>
       <div className="card-sec" key={"card-sec" + index}>
-        <img src={cardData.animeImg} alt={cardData.animeId} />
-        <h5>{cardData.animeTitle}</h5>
+        <img src={cardData.image} alt={cardData.image} />
+        <h5>{cardData.title}</h5>
       </div>
       <div className="play-btn">
         <BsFillPlayFill style={{ fontSize: "2rem" }} />
       </div>
-      <p key={"p" + index}>{`Episode-${cardData.episodeNum}`}</p>
+      <p key={"p" + index}>{`Episode-${cardData.episodeNumber}`}</p>
     </div>
   );
 }

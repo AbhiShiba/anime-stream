@@ -10,7 +10,7 @@ export function VideoPlay() {
   if(linkData.videoLink[0] === ""){
     link = ""
   } else {
-    link = linkData.videoLink[0].sources_bk[0].file
+    link = linkData.videoLink[0].sources[0].url
   }
   
   return (

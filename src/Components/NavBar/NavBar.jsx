@@ -9,9 +9,12 @@ import { useNavigate } from "react-router-dom";
 export function NavBar() {
   const value = useContext(UserContextData);
   const setParameter = value.parameter[1];
+  const parameter = value.parameter[0];
   const [genreFlag,setGenreFlage] = useState(false)
   const navigate = useNavigate()
   const vidLink = value.videoLink[1]
+  const vid = value.videoLink[0];
+  const setLoading = value.setLoading
 
   const [navClass, setNavClass] = useState({
     popular: "",
@@ -43,6 +46,7 @@ export function NavBar() {
         topAiring: "",
         genres: "",
       });
+      setLoading(true);
       setParameter("popular");
       navigate("/other")
     }
@@ -54,6 +58,7 @@ export function NavBar() {
         topAiring: "",
         genres: "",
       });
+      setLoading(true);
       setParameter("anime-movies");
     }
 
@@ -64,6 +69,7 @@ export function NavBar() {
         topAiring: "add-style",
         genres: "",
       });
+      setLoading(true);
       setParameter("top-airing");
     }
 
@@ -99,6 +105,7 @@ export function NavBar() {
     });
     setGenreStyle(checkStatus);
     setGenreFlage(false);
+    setLoading(true);
     setParameter(`genre/${gen}`)
   };
 
@@ -109,7 +116,15 @@ export function NavBar() {
       topAiring: "",
       genres: "",
     });
-    setParameter("recent-release");
+    
+    if(vid !== "" || parameter === "recent-episodes"){
+      setParameter("recent-episodes");
+      vidLink("");
+      navigate("/")
+      return
+    }
+    setParameter("recent-episodes");
+    setLoading(true)
     vidLink("");
     navigate("/")
   }

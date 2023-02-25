@@ -8,11 +8,11 @@ import { Axios } from "./utils/Axios";
 
 export const UserContextData = createContext();
 
-const base = "https://gogoanime.consumet.stream";
+const base = "https://api.consumet.org/anime/gogoanime";
 
 function App() {
   const [page, setPage] = useState(1);
-  const [parameter, setParameter] = useState("recent-release");
+  const [parameter, setParameter] = useState("recent-episodes");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [animeData, setAnimeData] = useState(null);
@@ -21,16 +21,22 @@ function App() {
   useEffect(() => {
     setLoading(true);
     let url = `${base}/${parameter}?page=${page}`;
+    // let url = "https://api.consumet.org/anime/gogoanime/recent-episodes?page=2"
+    if(parameter !== "recent-episodes" && parameter !== "top-airing"){
+      url = `https://gogoanime.consumet.stream/${parameter}?page=${page}`
+    }
+    console.log(url);
     if (parameter.charAt(0) === "s") {
       url = `${base}/${parameter}?keyw=${search}?page=${page}`;
     }
     const ApiData = async () => {
       const data = await Axios(url);
+      console.log(data);
       setLoading(false);
       setAnimeData(data.data);
     };
     ApiData();
-  }, [page, parameter, search]);
+  }, [page, parameter, search, videoLink]);
 
   return (
     <BrowserRouter>
@@ -42,6 +48,7 @@ function App() {
           Data: animeData,
           load: loading,
           videoLink : [videoLink,setVideoLink],
+          setLoading : setLoading
         }}
       >
         <NavBar />
