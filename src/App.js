@@ -16,26 +16,25 @@ function App() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [animeData, setAnimeData] = useState(null);
+  const [topAiringData,setTopAiringData] = useState(null);
   const [videoLink,setVideoLink] = useState("")
 
   useEffect(() => {
     setLoading(true);
-    let url = `${base}/${parameter}?page=${page}`;
     // let url = "https://api.consumet.org/anime/gogoanime/recent-episodes?page=2"
-    if(parameter !== "recent-episodes" && parameter !== "top-airing"){
-      url = `https://gogoanime.consumet.stream/${parameter}?page=${page}`
-    }
-    console.log(url);
-    if (parameter.charAt(0) === "s") {
-      url = `${base}/${parameter}?keyw=${search}?page=${page}`;
-    }
-    const ApiData = async () => {
-      const data = await Axios(url);
-      console.log(data);
+    // top-airing
+
+    const ApiData = async (arg1,arg2) => {
+      const data = await Axios(arg1);
       setLoading(false);
-      setAnimeData(data.data);
+      if(arg2 === "recent-episodes"){
+        setAnimeData(data.data);
+      } else {
+        setTopAiringData(data.data)
+      }
     };
-    ApiData();
+    ApiData(`${base}/recent-episodes?page=${page}`,"recent-episodes");
+    ApiData(`${base}/top-airing?page=${page}`,"top-airing")
   }, [page, parameter, search, videoLink]);
 
   return (
@@ -46,9 +45,9 @@ function App() {
           parameter: [parameter, setParameter],
           search: [search, setSearch],
           Data: animeData,
-          load: loading,
+          load: [loading, setLoading],
           videoLink : [videoLink,setVideoLink],
-          setLoading : setLoading
+          topAiringData : [topAiringData, setTopAiringData]
         }}
       >
         <NavBar />

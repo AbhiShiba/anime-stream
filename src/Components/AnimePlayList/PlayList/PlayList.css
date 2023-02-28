@@ -2,5 +2,9 @@
     display: grid;
     grid-template-columns: repeat(5,1fr);
     width: 70%;
-    margin: auto;
+}
+
+.list-main-container {
+    display: flex;
+    justify-content: center;
 }
