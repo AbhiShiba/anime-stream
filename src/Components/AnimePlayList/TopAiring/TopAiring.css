@@ -1,0 +1,39 @@
+.caro-div > img {
+    width: 250px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.main-calo-div {
+    /* display: block;
+    margin: auto; */
+    display: flex;
+    justify-content: center;
+    background-color: rgb(32, 30, 30);
+    width: 100%;
+    padding: 10px;
+}
+
+.caro-div {
+    display: flex;
+    align-items: flex-start;
+    margin: 10px;
+    color: white;
+}
+
+.title-section {
+    margin: 20px;
+}
+
+.topAnime-head {
+    font-size: 1rem;
+}
+
+.anime-calo-heading {
+    color: white;
+    margin: 10px 5px 20px 5px;
+}
+
+.gen-list > p {
+    margin: 80px 0 5px 0;
+}

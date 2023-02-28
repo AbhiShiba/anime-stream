@@ -1,8 +1,8 @@
 import { useEffect, useState, createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { PlayList } from "./Components/AnimePlayList/PlayList/PlayList";
 import { VideoPlay } from "./Components/AnimePlayList/VideoPlay/VideoPlay";
+import { Home } from "./Components/Home/Home";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Axios } from "./utils/Axios";
 
@@ -15,26 +15,32 @@ function App() {
   const [parameter, setParameter] = useState("recent-episodes");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [loading1,setLoading1] = useState(true);
   const [animeData, setAnimeData] = useState(null);
-  const [topAiringData,setTopAiringData] = useState(null);
-  const [videoLink,setVideoLink] = useState("")
+  const [topAiringData, setTopAiringData] = useState(null);
+  const [videoLink, setVideoLink] = useState("");
 
   useEffect(() => {
     setLoading(true);
+    setLoading1(true);
     // let url = "https://api.consumet.org/anime/gogoanime/recent-episodes?page=2"
     // top-airing
 
-    const ApiData = async (arg1,arg2) => {
+    const ApiData = async (arg1, arg2) => {
       const data = await Axios(arg1);
+      setAnimeData(data.data);
+
       setLoading(false);
-      if(arg2 === "recent-episodes"){
-        setAnimeData(data.data);
-      } else {
-        setTopAiringData(data.data)
-      }
     };
-    ApiData(`${base}/recent-episodes?page=${page}`,"recent-episodes");
-    ApiData(`${base}/top-airing?page=${page}`,"top-airing")
+
+    const ApiData1 = async (arg1, arg2) => {
+      const data = await Axios(arg1);
+
+      setTopAiringData(data.data);
+      setLoading1(false);
+    };
+    ApiData(`${base}/recent-episodes?page=${page}`, "recent-episodes");
+    ApiData1(`${base}/top-airing?page=${page}`, "top-airing");
   }, [page, parameter, search, videoLink]);
 
   return (
@@ -46,15 +52,15 @@ function App() {
           search: [search, setSearch],
           Data: animeData,
           load: [loading, setLoading],
-          videoLink : [videoLink,setVideoLink],
-          topAiringData : [topAiringData, setTopAiringData]
+          load1: [loading1,setLoading1],
+          videoLink: [videoLink, setVideoLink],
+          topAiringData: [topAiringData, setTopAiringData],
         }}
       >
         <NavBar />
         <Routes>
-          <Route path="/" element={<PlayList />} />
-          <Route path="/other" element={<PlayList />} />
-          <Route path="/video" element={<VideoPlay/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/video" element={<VideoPlay />} />
         </Routes>
       </UserContextData.Provider>
     </BrowserRouter>

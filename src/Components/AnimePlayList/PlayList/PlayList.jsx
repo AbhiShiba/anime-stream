@@ -8,7 +8,6 @@ export function PlayList() {
   const data = useContext(UserContextData);
   const playData = data.Data;
   const loader = data.load[0];
-  // console.log(playData);
   const parameter = data.parameter[0];
   let apiData;
   if (!loader) {
@@ -18,13 +17,16 @@ export function PlayList() {
   }
   const ListOfAnimes = (arr) => {
     return arr.map((list, index) => {
-      return <ListCard key={index} cardData={list} />
+      return <ListCard key={index} cardData={list} />;
     });
   };
   return (
-    <div className="list-main-container">
-      <div className="list-grid" key="animeData">
-        {loader ? <Loader /> : ListOfAnimes(apiData)}
+    <div className="head-dive">
+      <div className="list-main-container">
+      <h5 className="heading-playlist">Recent Anime Episodes</h5>
+        <div className="list-grid" key="animeData">
+          {loader ? <Loader /> : ListOfAnimes(apiData)}
+        </div>
       </div>
     </div>
   );

@@ -128,6 +128,7 @@ export function NavBar() {
     vidLink("");
     navigate("/");
   };
+
   return (
     <div className="nav-bar">
       <div className="nav-bar-section1">

@@ -21,7 +21,7 @@ export function ListCard({ index, cardData }) {
   };
 
   return (
-    <div className="card" key={cardData.title + index} onClick={playVideo}>
+    <div className="card-1" key={cardData.title + index} onClick={playVideo}>
       <div className="card-sec" key={"card-sec" + index}>
         <img src={cardData.image} alt={cardData.image} />
         <h5>{cardData.title}</h5>

@@ -1,4 +1,4 @@
-.card {
+.card-1 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,11 +24,11 @@
 
 .card-sec > h5{
     margin: 0 2px;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     text-align: center;
 }
 
-.card > p {
+.card-1 > p {
     position: absolute;
     bottom: 2%;
     font-size: 0.7rem;
