@@ -21,13 +21,10 @@ export function PlayList() {
     });
   };
   return (
-    <div className="head-dive">
-      <div className="list-main-container">
-      <h5 className="heading-playlist">Recent Anime Episodes</h5>
-        <div className="list-grid" key="animeData">
-          {loader ? <Loader /> : ListOfAnimes(apiData)}
-        </div>
+    <>
+      <div className="list-grid" key="animeData">
+        {loader ? <Loader /> : ListOfAnimes(apiData)}
       </div>
-    </div>
+    </>
   );
 }

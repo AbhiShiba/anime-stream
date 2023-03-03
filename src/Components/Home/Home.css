@@ -1,0 +1,38 @@
+.head-dive {
+    display: flex;
+    justify-content: center ;
+    width: 95%;
+    background-color: rgb(32, 30, 30);
+}
+
+
+.list-main-container {
+    width: 72%;
+}
+
+.heading-playlist {
+    margin: 10px 20px;
+    width: 69vw;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-calo-div {
+    /* display: block;
+    margin: auto; */
+    display: flex;
+    justify-content: center;
+    background-color: rgb(32, 30, 30);
+    width: 100%;
+    padding: 10px;
+}
+
+.anime-calo-heading {
+    color: white;
+    margin: 10px 15px 20px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -9,6 +9,10 @@ body {
   background-color: rgb(32, 30, 30);
 }
 
+#root {
+  background-color: rgb(32, 30, 30);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

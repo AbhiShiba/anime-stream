@@ -1,24 +1,7 @@
-.head-dive {
-    display: flex;
-    justify-content: center ;
-    width: 90%;
-}
 
 .list-grid {
     display: grid;
     grid-template-columns: repeat(5,1fr);
     width: 70%;
-}
-
-.list-main-container {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-    width: 70%;
-}
-
-.heading-playlist {
-    text-align: left;
-    margin: 10px 20px;
-    width: 70%;
+    margin: 8px;
 }

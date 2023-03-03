@@ -19,7 +19,6 @@ export function TopAiring() {
     setIndex(selectedIndex);
   };
 
-
   const topAiringAinime = (arr) => {
     return arr.map((item, index) => {
       return (
@@ -51,29 +50,26 @@ export function TopAiring() {
     });
   };
   return (
-    <div className="main-calo-div">
-      <div className="carousel-page">
-        <h5 className="anime-calo-heading">Top Airing Animes</h5>
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            <Carousel
-              activeIndex={index}
-              onSelect={handleSelect}
-              style={{
-                width: "70vw",
-                display: "flex",
-                justifyContent: "center",
-                boxShadow: "0 0 8px 3px white",
-                borderRadius: "5px",
-              }}
-            >
-              {topAiringAinime(data.results)}
-            </Carousel>
-          </>
-        )}
-      </div>
-    </div>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Carousel
+            activeIndex={index}
+            onSelect={handleSelect}
+            style={{
+              width: "70vw",
+              display: "flex",
+              justifyContent: "center",
+              boxShadow: "0 0 8px 3px white",
+              borderRadius: "5px",
+            }}
+          >
+            {topAiringAinime(data.results)}
+          </Carousel>
+        </>
+      )}
+    </>
   );
 }

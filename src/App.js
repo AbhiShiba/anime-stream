@@ -1,6 +1,7 @@
 import { useEffect, useState, createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import { RecentAnimePage } from "./Components/AnimePlayList/RecentAnimePage/RecentAnimePage";
 import { VideoPlay } from "./Components/AnimePlayList/VideoPlay/VideoPlay";
 import { Home } from "./Components/Home/Home";
 import { NavBar } from "./Components/NavBar/NavBar";
@@ -12,6 +13,7 @@ const base = "https://api.consumet.org/anime/gogoanime";
 
 function App() {
   const [page, setPage] = useState(1);
+  const [pageNo,setPageNo] = useState(1);
   const [parameter, setParameter] = useState("recent-episodes");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
@@ -40,14 +42,15 @@ function App() {
       setLoading1(false);
     };
     ApiData(`${base}/recent-episodes?page=${page}`, "recent-episodes");
-    ApiData1(`${base}/top-airing?page=${page}`, "top-airing");
-  }, [page, parameter, search, videoLink]);
+    ApiData1(`${base}/top-airing?page=${pageNo}`, "top-airing");
+  }, [page, pageNo, parameter, search, videoLink]);
 
   return (
     <BrowserRouter>
       <UserContextData.Provider
         value={{
           page: [page, setPage],
+          pageNoForTop : [pageNo,setPageNo],
           parameter: [parameter, setParameter],
           search: [search, setSearch],
           Data: animeData,
@@ -61,6 +64,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/video" element={<VideoPlay />} />
+          <Route path="/recent-anime" element={<RecentAnimePage/>} />
         </Routes>
       </UserContextData.Provider>
     </BrowserRouter>

@@ -1,0 +1,29 @@
+.count {
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.count > ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.li-btn {
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 45%;
+    margin: 5px;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.li-style {
+    background-color: gray;
+    box-shadow: 0 0 8px 2px lightblue;
+    border: none;
+}
